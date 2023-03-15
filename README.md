@@ -11,15 +11,19 @@ I have build a CSV file with key dates of moon cycles of 2019 (moon2019.txt) : 1
 ## Development
 
 ### Smoothing data
-It happen that the data is quite noisy, showing regular drops and masking the year-wise evolution. This phenomenon can be explain (see fig 1) by the organisationnal changes in the hospitals during week-ends and public holidays, as shorten staff for induced labors. 
+It happen that the data is quite noisy, showing regular drops and masking the year-wise evolution. This phenomenon can be explain (see fig 2) by the organisationnal changes in the hospitals during week-ends and public holidays, as shorten staff for induced labors. 
 
-To try to get pass these drops, we apply a 1D gaussian filter (or Moving Average) on our data. To show consistency over the years, fig 2 plot the tendancy of smoothed data over 4 years (excluding lead years). The number of births keep evolving in the same proportions.
-
-TODO : Evaluate correlation between years
+To try to get pass these drops, we apply a rolling mean filter (size = 7 days) on our data. To show consistency over the years, fig 3 plot the tendancy of smoothen data over 10 years. The number of births keep evolving in the same proportions.
 
 ### Add the full moon parameter in the loop
-Considering the impact of the full moon period on childbirth, we want to get a visual idea of it. Fig 3 shows every period of full moon on the plot of 2019 data. I enlarged the line to consider the fullmoon period as 3 consecutif days 
+Considering the impact of the full moon period on childbirth, we want to get a visual idea of it. Fig 5 shows every period of full moon on the plot of 2019 data. I enlarged the line to consider the fullmoon period as 3 consecutif days 
 
+### Statistical analysis
+To compare the the two periods, we split our data in 2 sub-dataframes : the full moon period (n=36), and the rest of the year (n=329). To avoid the bias introduced by the week-ends and public holydays, we work on averaged data by rolling mean on 7 days. Our analysis contains different steps : 
+- comparing means (with confidence interval) and standard deviation
+- showing boxplot and repartition of the data
+- running random permutation and computin p-values
 
+Is the number of childbirth significantly higher on full moon periods ? It is time to discover the conclusion...
 
 
